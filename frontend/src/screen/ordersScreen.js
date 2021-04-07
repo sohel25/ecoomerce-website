@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { listOrders, deleteOrder } from '../action/orderActions';
@@ -9,7 +9,7 @@ function OrdersScreen(props) {
   const { loading, orders, error } = orderList;
 
   const orderDelete = useSelector(state => state.orderDelete);
-  const { loading: loadingDelete, success: successDelete, error: errorDelete } = orderDelete;
+  const { success: successDelete} = orderDelete;
 
   const dispatch = useDispatch();
 
@@ -18,12 +18,13 @@ function OrdersScreen(props) {
     return () => {
       //
     };
-  }, [successDelete]);
+  }, [successDelete,dispatch]);
 
   const deleteHandler = (order) => {
     dispatch(deleteOrder(order._id));
   }
-  return loading ? <div>Loading...</div> :
+  return loading ? <div>Loading...</div>:
+  error? <div>{error}</div> :
     <div className="content content-margined">
 
       <div className="order-header">

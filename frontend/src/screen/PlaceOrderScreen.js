@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CheckoutSteps from '../component/CheckoutSteps';
 import { createOrder } from '../action/orderActions';
+import { ORDER_CREATE_RESET } from '../constant/orderConstants';
 function PlaceOrderScreen(props) {
 
   const cart = useSelector(state => state.cart);
@@ -33,11 +34,14 @@ function PlaceOrderScreen(props) {
   useEffect(() => {
     if (success) {
       props.history.push("/order/" + order._id);
+      dispatch({ type: ORDER_CREATE_RESET });
     }
 
-  }, [success,order,props.history]);
+  }, [success,order,props.history,dispatch]);
 
-  return <div>
+  return loading ? <div>Loading...</div>:
+  error? <div>{error}</div> :
+   <div>
     <CheckoutSteps step1 step2 step3 step4 ></CheckoutSteps>
     <div className="placeorder">
       <div className="placeorder-info">
