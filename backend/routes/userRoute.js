@@ -60,7 +60,9 @@ router.get("/createadmin",async (req,res)=>{
         name:'sohel',
         email:'sokhan@bestpeers.com',
         password:'1234',
-        isAdmin:true
+        isAdmin:true,
+        token: getToken(siginUser)
+
     });
 
     const newUser = await user.save();

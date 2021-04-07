@@ -61,11 +61,11 @@ const detailsProduct = (productId) => async(dispatch)=>{
 
 }
 
-const deleteProduct = (productId) => async(dispatch,getState)=>{
+export const deleteProduct = (productId) => async(dispatch,getState)=>{
    try{
       const {userSignin:{userInfo}} = getState();
       dispatch({type:PRODUCT_DELETE_REQUEST,payload:productId});
-      const {data} = await axios.get("http://localhost:8002/api/" + productId,{
+      const {data} = await axios.delete("http://localhost:8002/api/products/" + productId,{
          headers:{
             Authorization:'Bearer' + userInfo.token
          }
@@ -82,4 +82,4 @@ const deleteProduct = (productId) => async(dispatch,getState)=>{
 
 }
 export { listProducts};
-export { detailsProduct , saveProduct , deleteProduct};
+export { detailsProduct , saveProduct};

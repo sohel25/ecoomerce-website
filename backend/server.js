@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 import userRoute from "./routes/userRoute.js";
 import productRoute from "./routes/productRoute.js";
 import orderRoute from './routes/orderRoute.js';
-
+import uploadRoute from './routes/uploadRoute.js';
 import bodyparser from "body-parser";
 import path from 'path';
 import cors from "cors";
@@ -29,6 +29,7 @@ app.use(bodyparser.urlencoded({ extended: false }));
 app.use('/api/users', userRoute);
 app.use('/api/products', productRoute);
 app.use('/api/orders', orderRoute);
+app.use('/api/uploads', uploadRoute);
 
 app.listen(port,()=>{
     console.log(`Connection set up at ${port}`);

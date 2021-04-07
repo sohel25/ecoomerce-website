@@ -20,7 +20,7 @@ function ProductsScreen(props) {
   const [description, setDescription] = useState('');
   const [uploading, setUploading] = useState(false);
   const productList = useSelector((state) => state.productList);
-  const {  products } = productList;
+  const {  createdProducts } = productList;
 
   const productSave = useSelector((state) => state.productSave);
   const {
@@ -219,7 +219,7 @@ function ProductsScreen(props) {
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => (
+            {createdProducts.map((product) => (
               <tr key={product._id}>
                 <td>{product._id}</td>
                 <td>{product.name}</td>

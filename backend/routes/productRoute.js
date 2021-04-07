@@ -22,7 +22,7 @@ router.get("/:id",async(req,res)=>{
         res.status(404).send({message:"product not found"})
     }
     })
-router.post("/",isAuth, isAdmin,async(req,res)=>{
+router.post("/",async(req,res)=>{
     const product = new Product({
         name:req.body.name,
         price:req.body.price,
@@ -31,8 +31,7 @@ router.post("/",isAuth, isAdmin,async(req,res)=>{
         category:req.body.category,
         countInStock:req.body.countInStock,
         description:req.body.description,
-        rating:req.body.rating,
-        numReviews:req.body.numReviews,
+       
 
     })
     const newProduct = await product.save();
@@ -62,9 +61,9 @@ router.put('/:id', isAuth, isAdmin, async (req, res) => {
     }
     return res.status(500).send({ message: ' Error in Updating Product.' });
   });
-  router.delete("/:id",isAuth, isAdmin,async(req,res)=>{
+  router.delete("/:id",isAdmin, async(req,res)=>{
       const deleteProduct = await Product.findById(req.params.id);
-      if(deletedProduct){
+      if(deleteProduct){
           await deleteProduct.remove();
           res.send({message:"Product Deleted"});
       }
