@@ -1,6 +1,6 @@
 import express from "express";
 import User from "../models/userModel.js";
-import {getToken} from "../util.js";
+import {getToken, isAdmin, isAuth} from "../util.js";
 
 const router = express.Router();
 
@@ -62,7 +62,7 @@ if(newUser)
         name:newUser.name,
         email:newUser.email,
         isAdmin:newUser.isAdmin,
-        token: getToken(siginUser)
+        token: getToken(newUser)
 
       
 
@@ -81,7 +81,7 @@ router.get("/createadmin",async (req,res)=>{
         email:'sokhan@bestpeers.com',
         password:'1234',
         isAdmin:true,
-        token: getToken(siginUser)
+       
 
     });
 
