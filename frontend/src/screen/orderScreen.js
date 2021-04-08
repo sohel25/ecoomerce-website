@@ -36,7 +36,9 @@ function OrderScreen(props) {
           {order.shipping.postalCode}, {order.shipping.country},
           </div>
             <div>
-              {order.isDelivered ? "Delivered at " + order.deliveredAt : "Not Delivered."}
+              {order.isDelivered ? "Delivered at " + order.deliveredAt : ""}
+              {/* {order.isDelivered ? "Delivered at " + order.deliveredAt : "Not delivered"} */}
+
             </div>
           </div>
           <div>
@@ -45,7 +47,9 @@ function OrderScreen(props) {
               Payment Method: {order.payment.paymentMethod}
             </div>
             <div>
-              {order.isPaid ? "Paid at " + order.paidAt : "Not Paid."}
+              {order.isPaid ? "Paid at " + order.paidAt : ""}
+              {/* {order.isPaid ? "Paid at " + order.paidAt : "Not Paid."} */}
+
             </div>
           </div>
           <div>
